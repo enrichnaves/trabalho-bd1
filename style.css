@@ -1,0 +1,16 @@
+.crud-in{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: center;
+}
+.crud-in-form{
+    background-color: darkgrey;
+    font-size: 20px;
+    width: 250px;
+    text-align: center;
+    border: 2px solid black;
+}
+body{
+    text-align: center;
+}

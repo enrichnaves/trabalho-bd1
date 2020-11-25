@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Implementação do CRUD via interface, de pelo menos 3 tabelas</h1>
+    <div class="crud">
+        <h3>Tabela Convenio</h3>
+        <div class="crud-in">
+            <div class="crud-in-form">
+                <p>Inserir na tabela convenio</p>
+                <form method="POST" action="script.php">
+                    <p>Nome
+                    <input type="text" maxlength="30" placeholder="Nome" name="nome-conv-cad" required></p>
+                    <p>Telefone
+                    <input type="text" maxlength="11" placeholder="Telefone" name="tel-conv-cad" required></p>
+                    <button type="submit">Inserir</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Mudar o telefone de um convenio</p>
+                <form method="POST" action="script.php">
+                    <p>Nome
+                    <input type="text" maxlength="30" placeholder="Nome" name="nome-conv-up" required></p>
+                    <p>Novo Telefone
+                    <input type="text" maxlength="11" placeholder="Telefone" name="tel-conv-up" required></p>
+                    <button type="submit">Atualizar</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Excluir um convenio</p>
+                <form method="POST" action="script.php">
+                    <p>Nome
+                    <input type="text" maxlength="30" placeholder="Nome" name="nome-conv-del" required></p>
+                    <button type="submit">Excluir</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Consultar um convenio</p>
+                <form method="POST" action="script.php">
+                    <p>Nome
+                    <input type="text" maxlength="30" placeholder="Nome" name="nome-conv-sel" required></p>
+                    <button type="submit">Consultar</button>
+                </form>
+            </div>
+        </div>
+        <h3>Tabela Medico</h3>
+        <div class="crud-in">
+            <div class="crud-in-form">
+                <p>Inserir na tabela medico</p>
+                <form method="POST" action="script.php">
+                    <p>Nome
+                    <input type="text" maxlength="30" placeholder="Nome" name="nome-med-cad" required></p>
+                    <p>CRM
+                    <input type="text" maxlength="11" placeholder="CRM" name="crm-med-cad" required></p>
+                    <p>Especialidade
+                    <input type="text" maxlength="30" placeholder="Especialidade" name="esp-med-cad" required></p>
+                    <button type="submit">Inserir</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Mudar a especialidade de um medico</p>
+                <form method="POST" action="script.php">
+                    <p>CRM
+                    <input type="text" maxlength="30" placeholder="CRM" name="crm-med-up" required></p>
+                    <p>Nova Especialidade
+                    <input type="text" maxlength="30" placeholder="Especialidade" name="esp-med-up" required></p>
+                    <button type="submit">Atualizar</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Excluir um medico</p>
+                <form method="POST" action="script.php">
+                    <p>CRM
+                    <input type="text" maxlength="30" placeholder="CRM" name="crm-med-del" required></p>
+                    <button type="submit">Excluir</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Consultar um medico</p>
+                <form method="POST" action="script.php">
+                    <p>CRM
+                    <input type="text" maxlength="11" placeholder="CRM" name="crm-med-sel" required></p>
+                    <button type="submit">Consultar</button>
+                </form>
+            </div>
+        </div>
+        <h3>Tabela Paciente</h3>
+        <div class="crud-in">
+            <div class="crud-in-form">
+                <p>Inserir na tabela paciente</p>
+                <form method="POST" action="script.php">
+                    <p>Nome
+                    <input type="text" maxlength="30" placeholder="Nome" name="nome-pac-cad" required></p>
+                    <p>CPF
+                    <input type="text" maxlength="11" placeholder="CPF" name="cpf-pac-cad" required></p>
+                    <p>Telefone
+                    <input type="text" maxlength="11" placeholder="Telefone" name="tel-pac-cad" required></p>
+                    <p>Nome do convenio
+                    <input type="text" maxlength="30" placeholder="Nome do convenio" name="conv-pac-cad" required></p>
+                    <button type="submit">Inserir</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Mudar o telefone de um paciente</p>
+                <form method="POST" action="script.php">
+                    <p>CPF
+                    <input type="text" maxlength="11" placeholder="CPF" name="cpf-pac-up" required></p>
+                    <p>Novo Telefone
+                    <input type="text" maxlength="11" placeholder="Telefone" name="tel-pac-up" required></p>
+                    <button type="submit">Atualizar</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Excluir um paciente</p>
+                <form method="POST" action="script.php">
+                    <p>CPF
+                    <input type="text" maxlength="11" placeholder="CPF" name="cpf-pac-del" required></p>
+                    <button type="submit">Excluir</button>
+                </form>
+            </div>
+            <div class="crud-in-form">
+                <p>Consultar um paciente</p>
+                <form method="POST" action="script.php">
+                    <p>CPF
+                    <input type="text" maxlength="11" placeholder="CPF" name="cpf-pac-sel" required></p>
+                    <button type="submit">Consultar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
