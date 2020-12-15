@@ -155,6 +155,290 @@
                     </script>";
             }
             
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nome-med-cad"])) //INSERIR MEDICO
+    {
+        $crm = $_POST["crm-med-cad"];
+        $nome = $_POST["nome-med-cad"];
+        $esp = $_POST["esp-med-cad"];
+        
+        if ($conexao){
+            $sql="INSERT INTO medicos(
+            crm, nome, especialidade)
+            VALUES ('$crm', '$nome', '$esp');";
+            $result= pg_exec($conexao, $sql);
+            if ($result)
+            {
+                echo "<script>
+                    if(confirm('Cadastrado com sucesso!')){
+                        window.location='./index.html';
+                    }
+                </script>";
+            }else
+            {
+                echo "<script>
+                if(confirm('Ocorreu algum erro no cadastro!')){
+                    window.location='./index.html';
+                }
+                </script>";
+            }
+        }else
+        {
+            echo "<script>
+                    if(confirm('Erro no banco!')){
+                        window.location='./index.html';
+                    }
+                </script>";
+        }
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["esp-med-up"]))//ALTERAR ESPECIALIDADE MEDICO
+    {
+        $crm = $_POST["crm-med-up"];
+        $esp = $_POST["esp-med-up"];
+        if ($conexao){
+            $sql="SELECT * FROM medicos
+            WHERE crm = '$crm';";
+            $result= pg_fetch_row(pg_exec($conexao, $sql));
+            if ($result)
+            {
+                $sql="UPDATE medicos
+                SET especialidade = '$esp'
+                WHERE crm = '$crm'
+                ;";
+                $result= pg_exec($conexao, $sql);
+                
+                echo "<script>
+                if(confirm('Alterado com sucesso!')){
+                    window.location='./index.html';
+                }
+                </script>";
+            }
+            else{
+                echo "<script>
+                    if(confirm('Convenio não encontrado!')){
+                        window.location='./index.html';
+                    }
+                    </script>";
+            }
+        }
+        else{
+            echo "<script>
+                if(confirm('Erro no BD!')){
+                    window.location='./index.html';
+                }
+            </script>";
+            }
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["crm-med-del"]))//DELETAR MEDICO
+    {
+        $crm = $_POST["crm-med-del"];
+        if($conexao)
+            {
+                $sql = "SELECT COUNT(*) FROM medicos WHERE crm = '$crm';";
+                $fetch = pg_fetch_row(pg_exec($conexao, $sql));
+                if ($fetch[0]==1)
+                {
+                    $sql = "DELETE FROM medicos WHERE crm = '$crm';";
+                    $result = pg_exec($conexao, $sql);
+                    if ($result){
+                        echo "<script>
+                                if(confirm('Convenio excluido!')){
+                                    window.location='./index.html';
+                                }
+                            </script>";
+                    }
+                }else
+                {
+                    echo "<script>
+                            if(confirm('Convenio não encontrado!')){
+                                window.location='./index.html';
+                            }
+                        </script>";
+                            }
+            }else
+            {
+                echo "<script>
+                        if(confirm('Erro no BD!')){
+                            window.location='./index.html';
+                        }
+                    </script>";
+            }
+            
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["crm-med-sel"]))//CONSULTAR MEDICO
+    {
+        $crm = $_POST["crm-med-sel"];
+        if($conexao)
+            {
+                $sql = "SELECT COUNT(*) FROM medicos WHERE crm = '$crm';";
+                $fetch = pg_fetch_row(pg_exec($conexao, $sql));
+                if ($fetch[0]==1)
+                {
+                    $sql = "SELECT * FROM medicos WHERE crm = '$crm';";
+                    $result = pg_fetch_row(pg_exec($conexao, $sql));
+                    if ($result){
+                        echo "<script>
+                                if(confirm('Convenio: \\nCrm: $result[0] \\nNome: $result[1] \\nEspecialidade: $result[2]')){
+                                    window.location='./index.html';
+                                }
+                            </script>";
+                    }
+                }else
+                {
+                    echo "<script>
+                            if(confirm('Convenio não encontrado!')){
+                                window.location='./index.html';
+                            }
+                        </script>";
+                            }
+            }else
+            {
+                echo "<script>
+                        if(confirm('Erro no BD!')){
+                            window.location='./index.html';
+                        }
+                    </script>";
+            }
+            
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nome-pac-cad"])) //INSERIR PACIENTE
+    {
+        $nome = $_POST["nome-pac-cad"];
+        $cpf = $_POST["cpf-pac-cad"];
+        $tel = $_POST["tel-pac-cad"];
+        $nome_convenio = $_POST["conv-pac-cad"]
+
+        if ($conexao){
+            $sql="INSERT INTO pacientes(
+            nome, telefone, cpf, nome_convenio)
+            VALUES ('$nome', '$cpf', '$tel', '$nome_convenio');";
+            $result= pg_exec($conexao, $sql);
+            if ($result)
+            {
+                echo "<script>
+                    if(confirm('Cadastrado com sucesso!')){
+                        window.location='./index.html';
+                    }
+                </script>";
+            }else
+            {
+                echo "<script>
+                if(confirm('Ocorreu algum erro no cadastro!')){
+                    window.location='./index.html';
+                }
+                </script>";
+            }
+        }else
+        {
+            echo "<script>
+                    if(confirm('Erro no banco!')){
+                        window.location='./index.html';
+                    }
+                </script>";
+        }
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["cpf-pac-up"]))//ALTERAR TELEFONE CONV
+    {
+        $cpf = $_POST["cpf-pac-up"];
+        $tel = $_POST["tel-pac-up"];
+        if ($conexao){
+            $sql="SELECT * FROM paciente
+            WHERE cpf = '$cpf';";
+            $result= pg_fetch_row(pg_exec($conexao, $sql));
+            if ($result)
+            {
+                $sql="UPDATE paciente
+                SET telefone = '$tel'
+                WHERE cpf = '$cpf'
+                ;";
+                $result= pg_exec($conexao, $sql);
+                
+                echo "<script>
+                if(confirm('Alterado com sucesso!')){
+                    window.location='./index.html';
+                }
+                </script>";
+                
+            }
+            else{
+                echo "<script>
+                    if(confirm('Convenio não encontrado!')){
+                        window.location='./index.html';
+                    }
+                    </script>";
+            }
+        }
+        else{
+            echo "<script>
+                if(confirm('Erro no BD!')){
+                    window.location='./index.html';
+                }
+            </script>";
+            }
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["cpf-pac-del"]))//DELETAR PACIENTE
+    {
+        $cpf = $_POST["cpf-pac-del"];
+        if($conexao)
+            {
+                $sql = "SELECT COUNT(*) FROM pacientes WHERE cpf = '$cpf';";
+                $fetch = pg_fetch_row(pg_exec($conexao, $sql));
+                if ($fetch[0]==1)
+                {
+                    $sql = "DELETE FROM pacientes WHERE cpf = '$cpf';";
+                    $result = pg_exec($conexao, $sql);
+                    if ($result){
+                        echo "<script>
+                                if(confirm('Convenio excluido!')){
+                                    window.location='./index.html';
+                                }
+                            </script>";
+                    }
+                }else
+                {
+                    echo "<script>
+                            if(confirm('Convenio não encontrado!')){
+                                window.location='./index.html';
+                            }
+                        </script>";
+                            }
+            }else
+            {
+                echo "<script>
+                        if(confirm('Erro no BD!')){
+                            window.location='./index.html';
+                        }
+                    </script>";
+            }
+            
+    }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["cpf-pac-sel"]))//CONSULTAR PACIENTES
+    {
+        $cpf = $_POST["cpf-pac-sel"];
+        if($conexao)
+            {
+                $sql = "SELECT COUNT(*) FROM pacientes WHERE cpf = '$cpf';";
+                $fetch = pg_fetch_row(pg_exec($conexao, $sql));
+                if ($fetch[0]==1)
+                {
+                    $sql = "SELECT * FROM pacientes WHERE cpf = '$cpf';";
+                    $result = pg_fetch_row(pg_exec($conexao, $sql));
+                    if ($result){
+                        echo "<script>
+                                if(confirm('Convenio: \\nNome: $result[0] \\nCpf: $result[1] \\nTelefone: $result[2] \\nNome do convênio: $result[3]')){
+                                    window.location='./index.html';
+                                }
+                            </script>";
+                    }
+                }else
+                {
+                    echo "<script>
+                            if(confirm('Convenio não encontrado!')){
+                                window.location='./index.html';
+                            }
+                        </script>";
+                            }
+            }else
+            {
+                echo "<script>
+                        if(confirm('Erro no BD!')){
+                            window.location='./index.html';
+                        }
+                    </script>";
+            }
+            
     }
 
 ?>
