@@ -213,7 +213,7 @@
             }
             else{
                 echo "<script>
-                    if(confirm('Convenio não encontrado!')){
+                    if(confirm('MEDICO não encontrado!')){
                         window.location='./index.html';
                     }
                     </script>";
@@ -239,7 +239,7 @@
                     $result = pg_exec($conexao, $sql);
                     if ($result){
                         echo "<script>
-                                if(confirm('Convenio excluido!')){
+                                if(confirm('MEDICO excluido!')){
                                     window.location='./index.html';
                                 }
                             </script>";
@@ -247,7 +247,7 @@
                 }else
                 {
                     echo "<script>
-                            if(confirm('Convenio não encontrado!')){
+                            if(confirm('MEDICO não encontrado!')){
                                 window.location='./index.html';
                             }
                         </script>";
@@ -274,7 +274,7 @@
                     $result = pg_fetch_row(pg_exec($conexao, $sql));
                     if ($result){
                         echo "<script>
-                                if(confirm('Convenio: \\nCrm: $result[0] \\nNome: $result[1] \\nEspecialidade: $result[2]')){
+                                if(confirm('MEDICO: \\nCrm: $result[0] \\nNome: $result[1] \\nEspecialidade: $result[2]')){
                                     window.location='./index.html';
                                 }
                             </script>";
@@ -282,7 +282,7 @@
                 }else
                 {
                     echo "<script>
-                            if(confirm('Convenio não encontrado!')){
+                            if(confirm('MEDICO não encontrado!')){
                                 window.location='./index.html';
                             }
                         </script>";
@@ -301,7 +301,7 @@
         $nome = $_POST["nome-pac-cad"];
         $cpf = $_POST["cpf-pac-cad"];
         $tel = $_POST["tel-pac-cad"];
-        $nome_convenio = $_POST["conv-pac-cad"]
+        $nome_convenio = $_POST["conv-pac-cad"];
 
         if ($conexao){
             $sql="INSERT INTO pacientes(
@@ -348,7 +348,7 @@
                 $result= pg_exec($conexao, $sql);
                 
                 echo "<script>
-                if(confirm('Alterado com sucesso!')){
+                if(confirm('PACIENTE alterado com sucesso!')){
                     window.location='./index.html';
                 }
                 </script>";
@@ -356,7 +356,7 @@
             }
             else{
                 echo "<script>
-                    if(confirm('Convenio não encontrado!')){
+                    if(confirm('PACIENTE não encontrado!')){
                         window.location='./index.html';
                     }
                     </script>";
@@ -382,7 +382,7 @@
                     $result = pg_exec($conexao, $sql);
                     if ($result){
                         echo "<script>
-                                if(confirm('Convenio excluido!')){
+                                if(confirm('PACIENTE excluido!')){
                                     window.location='./index.html';
                                 }
                             </script>";
@@ -390,7 +390,7 @@
                 }else
                 {
                     echo "<script>
-                            if(confirm('Convenio não encontrado!')){
+                            if(confirm('PACIENTE não encontrado!')){
                                 window.location='./index.html';
                             }
                         </script>";
@@ -417,7 +417,7 @@
                     $result = pg_fetch_row(pg_exec($conexao, $sql));
                     if ($result){
                         echo "<script>
-                                if(confirm('Convenio: \\nNome: $result[0] \\nCpf: $result[1] \\nTelefone: $result[2] \\nNome do convênio: $result[3]')){
+                                if(confirm('PACIENTE: \\nNome: $result[0] \\nCpf: $result[1] \\nTelefone: $result[2] \\nNome do PACIENTE: $result[3]')){
                                     window.location='./index.html';
                                 }
                             </script>";
@@ -425,7 +425,7 @@
                 }else
                 {
                     echo "<script>
-                            if(confirm('Convenio não encontrado!')){
+                            if(confirm('PACIENTE não encontrado!')){
                                 window.location='./index.html';
                             }
                         </script>";
