@@ -1,4 +1,22 @@
 <?php
+
+    define('ERROBD', "<script>
+    if(confirm('Erro no banco!')){
+        window.location='./index.html';
+    }
+    </script>");
+    define('CADSUC', "<script>
+    if(confirm('Cadastrado com sucesso!')){
+        window.location='./index.html';
+    }
+    </script>");
+
+    define('CADERR', "<script>
+    if(confirm('Cadastrado com sucesso!')){
+        window.location='./index.html';
+    }
+    </script>");
+
      if (!isset($_SESSION))
      {
          session_start();
@@ -26,26 +44,14 @@
             $result= pg_exec($conexao, $sql);
             if ($result)
             {
-                echo "<script>
-                    if(confirm('Cadastrado com sucesso!')){
-                        window.location='./index.html';
-                    }
-                </script>";
+                echo CADSUC;
             }else
             {
-                echo "<script>
-                if(confirm('Ocorreu algum erro no cadastro!')){
-                    window.location='./index.html';
-                }
-                </script>";
+                echo CADERR;
             }
         }else
         {
-            echo "<script>
-                    if(confirm('Erro no banco!')){
-                        window.location='./index.html';
-                    }
-                </script>";
+            echo ERROBD;
         }
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nome-conv-up"]))//ALTERAR TELEFONE CONV
     {
@@ -79,11 +85,7 @@
             }
         }
         else{
-            echo "<script>
-                if(confirm('Erro no BD!')){
-                    window.location='./index.html';
-                }
-            </script>";
+            echo ERROBD;
             }
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nome-conv-del"]))//ALTERAR TELEFONE CONV
     {
@@ -113,11 +115,7 @@
                             }
             }else
             {
-                echo "<script>
-                        if(confirm('Erro no BD!')){
-                            window.location='./index.html';
-                        }
-                    </script>";
+                echo ERROBD;
             }
             
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nome-conv-sel"]))//ALTERAR TELEFONE CONV
@@ -148,11 +146,7 @@
                             }
             }else
             {
-                echo "<script>
-                        if(confirm('Erro no BD!')){
-                            window.location='./index.html';
-                        }
-                    </script>";
+                echo ERROBD;
             }
             
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nome-med-cad"])) //INSERIR MEDICO
@@ -254,11 +248,7 @@
                             }
             }else
             {
-                echo "<script>
-                        if(confirm('Erro no BD!')){
-                            window.location='./index.html';
-                        }
-                    </script>";
+                echo ERROBD;
             }
             
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["crm-med-sel"]))//CONSULTAR MEDICO
@@ -289,11 +279,7 @@
                             }
             }else
             {
-                echo "<script>
-                        if(confirm('Erro no BD!')){
-                            window.location='./index.html';
-                        }
-                    </script>";
+                echo ERROBD;
             }
             
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nome-pac-cad"])) //INSERIR PACIENTE
