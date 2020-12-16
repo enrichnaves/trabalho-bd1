@@ -17,6 +17,24 @@
     }
     </script>");
 
+    define('ALTSUC', "<script>
+    if(confirm('Alterado!')){
+        window.location='./index.html';
+    }
+    </script>");
+
+    define('EXCSUCSS', "<script>
+    if(confirm('Excluido!')){
+        window.location='./index.html';
+    }
+    </script>");
+
+    define('NAOENC', "<script>
+    if(confirm('Excluido!')){
+        window.location='./index.html';
+    }
+    </script>");
+
      if (!isset($_SESSION))
      {
          session_start();
@@ -69,19 +87,11 @@
                 ;";
                 $result= pg_exec($conexao, $sql);
                 
-                echo "<script>
-                if(confirm('Alterado com sucesso!')){
-                    window.location='./index.html';
-                }
-                </script>";
+                echo ALTSUC;
                 
             }
             else{
-                echo "<script>
-                    if(confirm('Convenio não encontrado!')){
-                        window.location='./index.html';
-                    }
-                    </script>";
+                echo NAOENC;
             }
         }
         else{
@@ -99,19 +109,11 @@
                     $sql = "DELETE FROM convenio WHERE nome_convenio = '$nome';";
                     $result = pg_exec($conexao, $sql);
                     if ($result){
-                        echo "<script>
-                                if(confirm('Convenio excluido!')){
-                                    window.location='./index.html';
-                                }
-                            </script>";
+                        echo EXCSUCSS;
                     }
                 }else
                 {
-                    echo "<script>
-                            if(confirm('Convenio não encontrado!')){
-                                window.location='./index.html';
-                            }
-                        </script>";
+                    echo NAOENC;
                             }
             }else
             {
@@ -138,11 +140,7 @@
                     }
                 }else
                 {
-                    echo "<script>
-                            if(confirm('Convenio não encontrado!')){
-                                window.location='./index.html';
-                            }
-                        </script>";
+                    echo NAOENC;
                             }
             }else
             {
@@ -162,26 +160,14 @@
             $result= pg_exec($conexao, $sql);
             if ($result)
             {
-                echo "<script>
-                    if(confirm('Cadastrado com sucesso!')){
-                        window.location='./index.html';
-                    }
-                </script>";
+                echo CADSUC;
             }else
             {
-                echo "<script>
-                if(confirm('Ocorreu algum erro no cadastro!')){
-                    window.location='./index.html';
-                }
-                </script>";
+                echo CADERR;
             }
         }else
         {
-            echo "<script>
-                    if(confirm('Erro no banco!')){
-                        window.location='./index.html';
-                    }
-                </script>";
+            echo ERROBD;
         }
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["esp-med-up"]))//ALTERAR ESPECIALIDADE MEDICO
     {
@@ -199,26 +185,14 @@
                 ;";
                 $result= pg_exec($conexao, $sql);
                 
-                echo "<script>
-                if(confirm('Alterado com sucesso!')){
-                    window.location='./index.html';
-                }
-                </script>";
+                echo ALTSUC;
             }
             else{
-                echo "<script>
-                    if(confirm('MEDICO não encontrado!')){
-                        window.location='./index.html';
-                    }
-                    </script>";
+                echo NAOENC;
             }
         }
         else{
-            echo "<script>
-                if(confirm('Erro no BD!')){
-                    window.location='./index.html';
-                }
-            </script>";
+            echo ERROBD;
             }
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["crm-med-del"]))//DELETAR MEDICO
     {
@@ -232,20 +206,11 @@
                     $sql = "DELETE FROM medicos WHERE crm = '$crm';";
                     $result = pg_exec($conexao, $sql);
                     if ($result){
-                        echo "<script>
-                                if(confirm('MEDICO excluido!')){
-                                    window.location='./index.html';
-                                }
-                            </script>";
+                        echo EXCSUCSS;
                     }
                 }else
                 {
-                    echo "<script>
-                            if(confirm('MEDICO não encontrado!')){
-                                window.location='./index.html';
-                            }
-                        </script>";
-                            }
+                    echo NAOENC;
             }else
             {
                 echo ERROBD;
@@ -271,12 +236,7 @@
                     }
                 }else
                 {
-                    echo "<script>
-                            if(confirm('MEDICO não encontrado!')){
-                                window.location='./index.html';
-                            }
-                        </script>";
-                            }
+                    echo NAOENC;
             }else
             {
                 echo ERROBD;
@@ -296,26 +256,14 @@
             $result= pg_exec($conexao, $sql);
             if ($result)
             {
-                echo "<script>
-                    if(confirm('Cadastrado com sucesso!')){
-                        window.location='./index.html';
-                    }
-                </script>";
+                echo CADSUC;
             }else
             {
-                echo "<script>
-                if(confirm('Ocorreu algum erro no cadastro!')){
-                    window.location='./index.html';
-                }
-                </script>";
+                echo CADERR;
             }
         }else
         {
-            echo "<script>
-                    if(confirm('Erro no banco!')){
-                        window.location='./index.html';
-                    }
-                </script>";
+            echo ERROBD;
         }
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["cpf-pac-up"]))//ALTERAR TELEFONE CONV
     {
@@ -333,27 +281,15 @@
                 ;";
                 $result= pg_exec($conexao, $sql);
                 
-                echo "<script>
-                if(confirm('PACIENTE alterado com sucesso!')){
-                    window.location='./index.html';
-                }
-                </script>";
+                echo ALTSUC;
                 
             }
             else{
-                echo "<script>
-                    if(confirm('PACIENTE não encontrado!')){
-                        window.location='./index.html';
-                    }
-                    </script>";
+                echo NAOENC;
             }
         }
         else{
-            echo "<script>
-                if(confirm('Erro no BD!')){
-                    window.location='./index.html';
-                }
-            </script>";
+            echo ERROBD;
             }
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["cpf-pac-del"]))//DELETAR PACIENTE
     {
@@ -367,27 +303,14 @@
                     $sql = "DELETE FROM pacientes WHERE cpf = '$cpf';";
                     $result = pg_exec($conexao, $sql);
                     if ($result){
-                        echo "<script>
-                                if(confirm('PACIENTE excluido!')){
-                                    window.location='./index.html';
-                                }
-                            </script>";
+                        echo EXCSUCSS;
                     }
                 }else
                 {
-                    echo "<script>
-                            if(confirm('PACIENTE não encontrado!')){
-                                window.location='./index.html';
-                            }
-                        </script>";
-                            }
+                    echo NAOENC;
             }else
             {
-                echo "<script>
-                        if(confirm('Erro no BD!')){
-                            window.location='./index.html';
-                        }
-                    </script>";
+                echo ERROBD;
             }
             
     }else if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["cpf-pac-sel"]))//CONSULTAR PACIENTES
@@ -410,19 +333,11 @@
                     }
                 }else
                 {
-                    echo "<script>
-                            if(confirm('PACIENTE não encontrado!')){
-                                window.location='./index.html';
-                            }
-                        </script>";
+                    echo NAOENC;
                             }
             }else
             {
-                echo "<script>
-                        if(confirm('Erro no BD!')){
-                            window.location='./index.html';
-                        }
-                    </script>";
+                echo ERROBD;
             }
             
     }
