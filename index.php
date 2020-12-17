@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h1>Implementação do CRUD via interface, de pelo menos 3 tabelas</h1>
@@ -131,6 +136,73 @@
                     <button type="submit">Consultar</button>
                 </form>
             </div>
+        </div>
+    </div>
+    <h1>Criação de 3 Visões ( com pelo menos 3 tabelas na consulta) -> seu resultado deve ser visualizado pela interface.</h1>
+    <div class="views">
+        <div class="table">
+        <h3>View das cirugias (Tabelas: Pacientes, Medicos, Cirurgias)</h3>
+            <?php
+                include "./bd.php";
+               if(!$conexao) {
+                   die("Não foi possível se conectar ao banco de dados.");
+               }
+                echo '<table id = "listTable">';
+                $sql = "SELECT * FROM pac_cir_med;";
+                $fetch = pg_exec($conexao, $sql);
+                $table = "<thead><tr><td>CPF PACIENTE</td><td>CRM MEDICO</td><td>PROCEDIMENTO</td></tr></thead><tbody>";
+                while ($row = pg_fetch_row($fetch))
+                {
+                    $table = $table . "<tr>";
+                    foreach ($row as $value){
+                        
+                    $table = $table .'<td>'. $value . '</td>';
+                    }
+                    $table = $table . "</tr>";
+                    
+                }
+                $table = $table . "</body></table>";
+                echo $table;
+            ?>
+        </div>
+        <div class="table">
+        <h3>View dos Exames (Tabelas: Pacientes, Medicos, Exame)</h3>
+        <?php
+                echo '<table id = "listTable">';
+                $sql = "SELECT * FROM pac_exa_med;";
+                $fetch = pg_exec($conexao, $sql);
+                $table = "<thead><tr><td>CPF PACIENTE</td><td>CRM MEDICO</td><td>EXAME</td></tr></thead><tbody>";
+                while ($row = pg_fetch_row($fetch))
+                {
+                    $table = $table . "<tr>";
+                    foreach ($row as $value){
+                        
+                    $table = $table .'<td>'. $value . '</td>';
+                    }
+                    $table = $table . "</tr>";
+                    
+                }
+                $table = $table . "</body></table>";
+                echo $table;
+            ?>
+        </div>
+        <div class="table">
+        <h3>View das Consultas (Tabelas: Pacientes, Medicos, Consulta)</h3>
+        <?php
+                echo "<table id =  'listTable'>";
+                $sql = "SELECT * FROM pac_cons_med;";
+                $fetch = pg_exec($conexao, $sql);
+                $table = "<thead><tr><td>CPF PACIENTE</td><td>CRM MEDICO</td><td>DATA E HORA DA CUNSULTA</td></tr></thead><tbody>";
+                while ($row = pg_fetch_row($fetch))
+                {
+                    foreach ($row as $value){
+                    $table = $table .'<td>'. $value . '</td>';
+                    }
+                    $table = $table . "</tr>";
+                }
+                $table = $table . "</body></table>";
+                echo $table;
+            ?>
         </div>
     </div>
 </body>

@@ -2,51 +2,39 @@
 
     define('ERROBD', "<script>
     if(confirm('Erro no banco!')){
-        window.location='./index.html';
+        window.location='./index.php';
     }
     </script>");
     define('CADSUC', "<script>
     if(confirm('Cadastrado com sucesso!')){
-        window.location='./index.html';
+        window.location='./index.php';
     }
     </script>");
 
     define('CADERR', "<script>
     if(confirm('Cadastrado com sucesso!')){
-        window.location='./index.html';
+        window.location='./index.php';
     }
     </script>");
 
     define('ALTSUC', "<script>
     if(confirm('Alterado!')){
-        window.location='./index.html';
+        window.location='./index.php';
     }
     </script>");
 
     define('EXCSUCSS', "<script>
     if(confirm('Excluido!')){
-        window.location='./index.html';
+        window.location='./index.php';
     }
     </script>");
 
     define('NAOENC', "<script>
     if(confirm('Excluido!')){
-        window.location='./index.html';
+        window.location='./index.php';
     }
     </script>");
-
-     if (!isset($_SESSION))
-     {
-         session_start();
-     }
-     
-     $servidor = "localhost";
-     $porta = 5432;
-     $bancoDeDados = "trabalho";
-     $usuario = "postgres";
-     $senha = "admin";
-
-    $conexao = pg_connect("host=$servidor port=$porta dbname=$bancoDeDados user=$usuario password=$senha");
+    include "./bd.php";
     if(!$conexao) {
         die("Não foi possível se conectar ao banco de dados.");
     }
@@ -134,7 +122,7 @@
                     if ($result){
                         echo "<script>
                                 if(confirm('Convenio: \\nNome: $result[0] \\nTelefone: $result[1]')){
-                                    window.location='./index.html';
+                                    window.location='./index.php';
                                 }
                             </script>";
                     }
@@ -211,6 +199,7 @@
                 }else
                 {
                     echo NAOENC;
+                }
             }else
             {
                 echo ERROBD;
@@ -230,13 +219,14 @@
                     if ($result){
                         echo "<script>
                                 if(confirm('MEDICO: \\nCrm: $result[0] \\nNome: $result[1] \\nEspecialidade: $result[2]')){
-                                    window.location='./index.html';
+                                    window.location='./index.php';
                                 }
                             </script>";
                     }
                 }else
                 {
                     echo NAOENC;
+                }
             }else
             {
                 echo ERROBD;
@@ -308,6 +298,7 @@
                 }else
                 {
                     echo NAOENC;
+                }
             }else
             {
                 echo ERROBD;
@@ -327,7 +318,7 @@
                     if ($result){
                         echo "<script>
                                 if(confirm('PACIENTE: \\nNome: $result[0] \\nCpf: $result[1] \\nTelefone: $result[2] \\nNome do PACIENTE: $result[3]')){
-                                    window.location='./index.html';
+                                    window.location='./index.php';
                                 }
                             </script>";
                     }
@@ -341,5 +332,6 @@
             }
             
     }
+    
 
 ?>
