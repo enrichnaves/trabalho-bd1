@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION))
+   {
+       session_start();
+   }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +18,7 @@
     </style>
 </head>
 <body>
+    <a href="./sair.php">Sair</a>
     <h1>Implementação do CRUD via interface, de pelo menos 3 tabelas</h1>
     <div class="crud">
         <h3>Tabela Convenio</h3>

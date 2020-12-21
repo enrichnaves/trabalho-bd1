@@ -13,7 +13,7 @@
 
     define('CADERR', "<script>
     if(confirm('Cadastrado com sucesso!')){
-        window.location='./index.php';
+        //window.location='./index.php';
     }
     </script>");
 
