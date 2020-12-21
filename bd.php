@@ -16,12 +16,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["user_login"]) && isset
     $conexao = pg_connect("host=$servidor port=$porta dbname=$bancoDeDados user=$usuario password=$senha");
     if($conexao)
     {
-        $arr = array('OK' => 0);
-        echo json_encode($arr);
+        echo '';
     }
     else
     {
-        $arr = array('NO' => 0);
-        echo json_encode($arr);
+       echo '0';
     }
 ?>

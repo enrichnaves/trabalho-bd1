@@ -32,15 +32,15 @@
                     url:"./bd.php",
                     data: $("#login_form").serialize(),
                     success: function(retorno){
-                        try{
-                            var retorno =  JSON.parse(retorno);
-                        }catch (e)
+                        if(retorno=='')
+                        {
+                            if(window.location.href=="http://localhost/bd/login.php")
+                                {
+                                    window.location='./index.php';
+                                }
+                        }else
                         {
                             document.getElementById("mensagem").innerHTML = "Login não realizado";
-                        }
-                        if(retorno['OK'] == '0')
-                        {
-                            window.location='./index.php';
                         }
                     },
                     error: function(retornoErro){
